@@ -62,13 +62,10 @@ class Scheduler:
             return
 
         for i in range(self.info.simulation_time + 1):
-            for j in range(self.info.task_number - 1):
-                if self.tasks[j].deadline > self.tasks[j+1].deadline:
-                    aux = self.tasks[j]
-                    self.tasks[j] = self.tasks[j + 1]
-                    self.tasks[j+1] = aux
-
             self.addToReadyQueue(i)
+
+            self.readyQueue.sort(key=lambda task: task.deadline)
+
             if self.cpu[0] is not None:
                 self.compute(i)
             if self.cpu[0] is None and len(self.readyQueue) > 0:

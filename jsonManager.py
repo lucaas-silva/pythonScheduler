@@ -3,7 +3,7 @@ from task import Task
 
 class JsonManager:
     def __init__(self):
-        with open("rm.json", "r") as file:
+        with open("file.json", "r") as file:
             file_contents = json.load(file)
 
         self.simulation_time = file_contents["simulation_time"]
